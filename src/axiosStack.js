@@ -1,5 +1,3 @@
-import { getGuid } from '../utils/assist';
-
 export default {
   data() {
     return {
@@ -14,16 +12,18 @@ export default {
       cancelText && (this.axiosCancelText = cancelText);
       axios && (this.axiosOrigin = axios);
     },
-    // 获取栈内容信息
-    getAxiosStackMsg(key) {
-      return this.axiosStacks[key]
-    },
     // 添加axios的请求栈
     createAxiosStack() {
       let axiosSource = {};
       let key = null;
       if (this.axiosOrigin) {
-        key = getGuid();
+        let guid = '';
+        let n = (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+        for (let i = 1; i <= 4; i++) {
+          guid += n;
+        }
+
+        key = guid;
         // 获取axios的请求token
         axiosSource = this.axiosOrigin.CancelToken.source();
         this.axiosStacks[key] = {
@@ -37,9 +37,17 @@ export default {
         key
       };
     },
+    // 获取栈内容信息
+    getAxiosStackMsg(key) {
+      return this.axiosStacks[key]
+    },
     // 删除axios栈内的值
     deleteAxiosStack(key) {
       delete this.axiosStacks[key];
+    },
+    // 取消某个key的请求
+    cancelAxiosItem(key) {
+      key && this.axiosStacks[key].source.cancel(this.axiosCancelText);
     },
     // 销毁axios栈内的所有请求
     destroyAxiosStackAll() {

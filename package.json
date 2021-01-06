@@ -1,7 +1,13 @@
 {
-  "name": "test",
-  "version": "0.1.0",
-  "private": true,
+  "name": "axios-cancel-mixin",
+  "version": "1.0.2",
+  "description": "vue mixin axios cancel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yomaGit/axios-cancel"
+  },
+  "main": "src/axiosStack.js",
+  "homepage": "https://github.com/yomaGit",
   "scripts": {
     "serve": "vue-cli-service serve",
     "start": "npm run serve",
@@ -9,6 +15,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "axios-cancel-mixin": "^1.0.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },
@@ -19,6 +27,10 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^10.0.0",
+    "koa2-cors": "^2.0.6",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
