@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/yomaGit/axios-cancel"
   },
-  "main": "src/axiosStack.js",
+  "main": "src/axiosCancel/index.js",
   "homepage": "https://github.com/yomaGit",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "axios-cancel": "^0.2.2",
     "axios-cancel-mixin": "^1.0.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
