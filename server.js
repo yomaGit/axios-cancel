@@ -17,7 +17,7 @@ router
     return new Promise(resolve => {
       setTimeout(() => {
         resolve()
-      }, 300);
+      }, 500);
     }).then(() => {
       ctx.body = backJson;
     })
@@ -30,7 +30,7 @@ router
    return new Promise(resolve => {
       setTimeout(() => {
         resolve()
-      }, 300);
+      }, 500);
     }).then(() => {
       ctx.body = backJson;
     })
