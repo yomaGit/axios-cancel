@@ -1,16 +1,22 @@
 {
   "name": "axios-cancel-plugin",
-  "version": "1.0.2",
-  "description": "axios cancel plugin",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yomaGit/axios-cancel"
-  },
-  "main": "./lib/index.js",
-  "homepage": "https://github.com/yomaGit",
+  "version": "1.0.1",
+  "description": "Simplify Axios cancellation request when using Axios Library",
+  "main": "dist/index.js",
   "scripts": {
     "test": "mocha --require babel-register test/*.js",
     "build": "webpack -p"
+  },
+  "keywords": [
+    "axios",
+    "http",
+    "cancel",
+    "promise"
+  ],
+  "author": "WangPeng <wangpeng234@163.com>",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/yomaGit/axios-cancel"
   },
   "devDependencies": {
     "axios": "0.15.2",
@@ -26,9 +32,8 @@
     "koa-router": "^10.0.0",
     "koa2-cors": "^2.0.6",
     "mocha": "^8.2.1",
-    "webpack": "^1.14.0"
-  },
-  "dependencies": {
+    "webpack": "^1.14.0",
     "babel-preset-env": "^1.7.0"
-  }
+  },
+  "dependencies": {}
 }

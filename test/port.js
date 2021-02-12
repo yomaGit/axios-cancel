@@ -26,12 +26,12 @@ describe('axios cancel', () => {
       .catch(error => {
         expect(error).to.be(null);
       });
-  });
+  })
 
   it('request with requestId', () => {
     const requestId = 'request_id';
     return axios.get(url, {
-      requestId: requestId
+      requestId
     })
       .then(res => {
         expect(res.data.success).to.be(true);
@@ -39,8 +39,8 @@ describe('axios cancel', () => {
       .catch(error => {
         expect(error).to.be(null);
       });
-  });
-  // FIXME：不是最好方式，可以判断函数是否执行，api后续可以查查
+  })
+  
   it('cancel a single request with requestId', () => {
     const requestId = 'request_id_single';
     const promise = axios.get(url, {
@@ -58,7 +58,7 @@ describe('axios cancel', () => {
     }, 100)
 
     return promise;
-  });
+  })
 
   it('cancel a request with subsequent requests with same `requestId`', () => {
     const requestId = 'request_id_same';
@@ -86,7 +86,7 @@ describe('axios cancel', () => {
     setTimeout(() => {
       expect(JSON.stringify(arrRes)).to.be("[\"first cache\"]");
     }, 100);
-  });
+  })
 
   it('cancel all requests', () => {
     const requestId1 = 'request_id_cancel_1';
@@ -124,5 +124,5 @@ describe('axios cancel', () => {
       });
 
     axios.cancelAll();
-  });
-});
+  })
+})
