@@ -33,7 +33,7 @@
     "koa2-cors": "^2.0.6",
     "mocha": "^8.2.1",
     "webpack": "^1.14.0",
-    "babel-preset-env": "^1.7.0"
-  },
-  "dependencies": {}
+    "babel-preset-env": "^1.7.0",
+    "axios-cancel-plugin": "^1.0.1"
+  }
 }
