@@ -88,6 +88,44 @@ describe('axios cancel', () => {
     }, 100);
   })
 
+  it('Cancel part of the request', () => {
+    const requestId1 = 'request_id_cancel_1';
+    const requestId2 = 'request_id_cancel_2';
+    const requestId3 = 'request_id_cancel_3';
+    
+    axios.get(url, {
+      requestId: requestId1
+    })
+      .then(res => {
+        expect(res).to.be(null);
+      })
+      .catch(res => {
+        expect(axios.isCancel(res)).to.be(true);
+      });
+
+    axios.get(url, {
+      requestId: requestId2
+    })
+      .then(res => {
+        expect(res).to.be(null);
+      })
+      .catch(res => {
+        expect(axios.isCancel(res)).to.be(true);
+      });
+
+    axios.get(url, {
+      requestId: requestId3
+    })
+      .then(res => {
+        expect(res.data.success).to.be(true);
+      })
+      .catch(res => {
+        expect(axios.isCancel(res)).to.be(false);
+      });
+
+    axios.cancel([requestId1, requestId2]);
+  })
+
   it('cancel all requests', () => {
     const requestId1 = 'request_id_cancel_1';
     const requestId2 = 'request_id_cancel_2';

@@ -134,7 +134,7 @@ axios.cancelAll();
 *options*
 - debug _(enables logging)_
 
-*axios.cancel(requestId: string[, reason: string])*
+*axios.cancel(requestId: string | Array[, reason: string])*
 
 *axios.cancelAll([reason: string])*
 
