@@ -1,4 +1,4 @@
-# axios-cancel
+# axios-cancel-plugin
 
 Simplify Axios cancellation request when using [Axios](https://www.kancloud.cn/yunye/axios/234845) Library
 
@@ -22,17 +22,19 @@ axios.get(url, {
   requestId: requestId
 })
   .then(res => {
-    console.log('resolved');
+    console.log('resolved get');
   }).catch(thrown => {
     if (axios.isCancel(thrown)) {
-      console.log('request cancelled');
+      console.log('request cancelled get');
     } else {
-      console.log('some other reason');
+      console.log('some other reason get');
     }
   });
 
 axios.cancel(requestId);
 
+// aborts the HTTP request, and cancels the promise
+// logs `request cancelled get`
 ...
 
 // Single cancellation request (post)
@@ -41,16 +43,19 @@ const promise = axios.post(url, {}, {
   requestId: requestId
 })
   .then(res => {
-    console.log('resolved');
+    console.log('resolved post');
   }).catch(thrown => {
     if (axios.isCancel(thrown)) {
-      console.log('request cancelled');
+      console.log('request cancelled post');
     } else {
-      console.log('some other reason');
+      console.log('some other reason post');
     }
   });
 
 axios.cancel(requestId);
+
+// aborts the HTTP request, and cancels the promise
+// logs `request cancelled post`
 ```
 
 ## Examples
@@ -64,9 +69,9 @@ const promise1 = axios.get(url, {
     console.log('resolved promise 1');
   }).catch(thrown => {
     if (axios.isCancel(thrown)) {
-      console.log('request 1 cancelled');
+      console.log('request cancelled 1');
     } else {
-      console.log('some other reason');
+      console.log('some other reason 1');
     }
   });
 
@@ -78,19 +83,18 @@ const promise2 = axios.get(url, {
     console.log('resolved promise 2');
   }).catch(thrown => {
     if (axios.isCancel(thrown)) {
-      console.log('request 2 cancelled');
+      console.log('request cancelled 2');
     } else {
-      console.log('some other reason');
+      console.log('some other reason 2');
     }
   });
 
 // aborts the first HTTP request, and cancels the first promise 
-// logs `request 1 cancelled`
+// logs `request cancelled 1`
 // logs `resolved promise 2`
 ```
-Multiple requests with different `requestId`, cancell all
+Multiple requests with different `requestId`, cancell `part`
 ```javascript
-
 const requestId1 = 'requestId1';
 const promise1 = axios.get(url, {
   requestId: requestId1
@@ -99,9 +103,9 @@ const promise1 = axios.get(url, {
     console.log('resolved promise 1');
   }).catch(thrown => {
     if (axios.isCancel(thrown)) {
-      console.log('request 1 cancelled');
+      console.log('request cancelled 1');
     } else {
-      console.log('some other reason');
+      console.log('some other reason 1');
     }
   });
 
@@ -110,21 +114,71 @@ const promise2 = axios.get(url, {
   requestId: requestId2
 })
   .then(res => {
+    console.log('resolved promise 2');
+  }).catch(thrown => {
+    if (axios.isCancel(thrown)) {
+      console.log('request cancelled 2');
+    } else {
+      console.log('some other reason 2');
+    }
+  });
+
+const requestId3 = 'requestId3';
+const promise3 = axios.get(url, {
+  requestId: requestId3
+})
+  .then(res => {
+    console.log('resolved promise 3');
+  }).catch(thrown => {
+    if (axios.isCancel(thrown)) {
+      console.log('request cancelled 3');
+    } else {
+      console.log('some other reason 3');
+    }
+  });
+
+axios.cancel([requestId1, requestId2]);
+
+// aborts part HTTP request, and cancels part promises
+// logs `request cancelled 1`
+// logs `request cancelled 2`
+// logs `resolved promise 3`
+```
+Multiple requests with different `requestId`, cancell `all`
+```javascript
+const requestId1 = 'requestId1';
+const promise1 = axios.get(url, {
+  requestId: requestId1
+})
+  .then(res => {
     console.log('resolved promise 1');
   }).catch(thrown => {
     if (axios.isCancel(thrown)) {
-      console.log('request 2 cancelled');
+      console.log('request cancelled 1');
     } else {
-      console.log('some other reason');
+      console.log('some other reason 1');
+    }
+  });
+
+const requestId2 = 'requestId2';
+const promise2 = axios.get(url, {
+  requestId: requestId2
+})
+  .then(res => {
+    console.log('resolved promise 2');
+  }).catch(thrown => {
+    if (axios.isCancel(thrown)) {
+      console.log('request cancelled 2');
+    } else {
+      console.log('some other reason 2');
     }
   });
 
 axios.cancelAll();
 
 // aborts all HTTP request, and cancels all promises
-// logs `request 1 cancelled`
-// logs `request 2 cancelled`
-
+// logs `request cancelled 1`
+// logs `request cancelled 2`
 ```
 
 ## Methods
