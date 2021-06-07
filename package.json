@@ -1,6 +1,6 @@
 {
   "name": "axios-cancel-plugin",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Simplify Axios cancellation request when using Axios Library",
   "main": "dist/index.js",
   "scripts": {
